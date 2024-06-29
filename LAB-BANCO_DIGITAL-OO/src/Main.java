@@ -21,6 +21,7 @@ public class Main {
 		poupanca.pedirImprestimo(100);
 
 		cc.encerrarConta();
+
 	}
 
 }
