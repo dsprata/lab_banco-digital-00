@@ -8,6 +8,7 @@ public abstract class Conta implements IConta {
 	protected int numero;
 	protected double saldo;
 	protected Cliente cliente;
+	protected double emprestimo = 0;
 
 	public Conta(Cliente cliente) {
 		this.agencia = Conta.AGENCIA_PADRAO;
@@ -42,11 +43,30 @@ public abstract class Conta implements IConta {
 	public double getSaldo() {
 		return saldo;
 	}
+	
+	public void setEmprestimo(double emprestimo) {
+		this.emprestimo = emprestimo;
+	}
+
+	public double getEmprestimo() {
+		return emprestimo;
+	}
+
+	public void encerrarConta(){
+		try {
+			System.out.println("Conta Encerrada");
+			this.finalize();
+		} catch (Throwable e) {		
+			e.printStackTrace();
+		}
+	}
 
 	protected void imprimirInfosComuns() {
 		System.out.println(String.format("Titular: %s", this.cliente.getNome()));
+		System.out.println(String.format("Idade: %s", this.cliente.getIdade()));
 		System.out.println(String.format("Agencia: %d", this.agencia));
 		System.out.println(String.format("Numero: %d", this.numero));
-		System.out.println(String.format("Saldo: %.2f", this.saldo));
+		System.out.println(String.format("Saldo: %.2f", this.saldo));		
+		System.out.println(String.format("Valor em emprestimo: %.2f", this.emprestimo));
 	}
 }
